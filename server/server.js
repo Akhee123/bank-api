@@ -16,5 +16,5 @@ server.use(errorHandler);
 
 
 server.listen(port, () => {
-    console.log(`Listening on port 5000 ${port}`);
+    console.log(`Listening on port ${port}`);
 });
