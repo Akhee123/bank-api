@@ -12,13 +12,19 @@ const getUsers = asyncHandler(async (req, res) => {
 // POST
 const createUser = asyncHandler(async (req, res) => {
   console.log("Request Body: ", req.body);
-  const { name, deposit, credit } = req.body;
-  if (!name || !deposit || !credit) {
+  const { passport, name, deposit, credit } = req.body;
+  if (!passport || !name || !deposit || !credit) {
     res.status(400);
     throw new Error("Missing Fields");
   }
 
-  const user = await Admin.create({ name, deposit, credit });
+  const userAvailabe = await Admin.findOne({passport});
+  if (userAvailabe){
+    res.status(400);
+    throw new Error("User Already Exists");
+  }
+
+  const user = await Admin.create({ passport, name, deposit, credit });
   res.status(201).json(user);
 });
 

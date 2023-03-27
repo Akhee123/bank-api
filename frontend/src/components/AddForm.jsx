@@ -16,6 +16,9 @@ function AddForm() {
       <div>
         <form onSubmit={submitHandler}>
 
+            <label htmlFor="passport">Passport</label>
+            <input type="text" name="passport" required/>
+
             <label htmlFor="name">Name</label>
             <input type="text" name="name" required/>
 
